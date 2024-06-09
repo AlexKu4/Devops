@@ -12,7 +12,7 @@ def devide_nums(num1, num2):
     else:
         return -1
 def subtracting_nums(num1, num2):
-    if if isinstance(num1, int) and isinstance(num2, int):
+    if isinstance(num1, int) and isinstance(num2, int):
         return num1 - num2
     else:
         return -1
