@@ -10,4 +10,4 @@ def devide_nums(num1, num2):
     if isinstance(num1, int) and isinstance(num2, int) and num2 != 0:
         return num1 // num2
     else:
-        return -1
+        return -2
