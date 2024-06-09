@@ -1,0 +1,58 @@
+name: BuildRelease
+
+on:
+  push:
+    branches: ["main"]
+
+permissions:
+  contents: write
+  packages: write
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: CheckoutCode
+      uses: actions/checkout@v2
+
+    - name: SetUpPython
+      uses: actions/setup-python@v2
+      with:
+        python-version: '3.11'
+
+    - name: InstallDependencies
+      run: |
+        python -m pip install --upgrade pip
+        pip install -r requirements.txt
+
+    - name: BuildProject
+      run: |
+        python -m compileall .
+
+    - name: Archive .pyc files
+      run: |
+          mkdir pyc-files
+          mv **/*.pyc pyc-files
+          zip -r pyc-files.zip pyc-files
+
+    - name: CreateRelease
+      id: create_release
+      uses: actions/create-release@v1
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      with:
+        tag_name: ${{ github.run_number }}
+        release_name: Release ${{ github.run_number }}
+        draft: false
+        prerelease: false
+
+    - name: UploadReleaseAsset
+      uses: actions/upload-release-asset@v1
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      with:
+        upload_url: ${{ steps.create_release.outputs.upload_url }}
+        asset_path: ./pyc-files.zip
+        asset_name: pyc-files.zip
+        asset_content_type: application/zip
