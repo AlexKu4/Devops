@@ -16,5 +16,5 @@ def test2_sum_numbers():
 def test2_sum_numbers():
     assert sum_numbers("1", 1) == -1
 
-def test2_sum_numbers():
+def test3_sum_numbers():
     assert sum_numbers(1, "-1") == -1
