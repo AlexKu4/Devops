@@ -1,2 +1,2 @@
 def magic_function():
-  print("magic")
+    print("magic")
