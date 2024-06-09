@@ -1,8 +1,7 @@
 name: Check CodeStyle
 
 on:
-  push:
-     [push, pull_request]
+  [push, pull_request]
 
 jobs:
   flake8:
