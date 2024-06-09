@@ -1,4 +1,4 @@
-from Concatenate import concatenate_str, sum_numbers
+from Concatenate import concatenate_str, sum_numbers, devide_nums
 import pytest
 
 def test1_concatenate():
@@ -18,3 +18,15 @@ def test2_sum_numbers():
 
 def test3_sum_numbers():
     assert sum_numbers(1, "-1") == -1
+
+def test1_devide_nums():
+    assert devide_nums(10, 5) == 2
+
+def test2_devide_nums():
+    assert devide_nums(4, 5) == 0
+ 
+def test3_devide_nums():
+    assert devide_nums(10, 0) == -1
+
+def test3_devide_nums():
+    assert devide_nums(10, "0") == -1
